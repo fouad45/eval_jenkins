@@ -48,4 +48,4 @@ autoscaling:
   enabled: false
 
 databaseURI: postgresql://movie_db_username:movie_db_password@movie-db/movie_db_qa
-castServiceUrl: http://cast-service:8000/api/v1/casts/
+castServiceUrl: "http://cast-service:8000/api/v1/casts/"
