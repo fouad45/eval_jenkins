@@ -60,12 +60,12 @@ stage('Deploiement en dev'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/db/values/values-dev.yaml values.yml
+                cp manifests/db/values/cast-db/values-dev.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ cast-db-dev --values=values.yml --namespace dev
                 
-                cp manifests/db/values/values-dev.yaml values.yml
+                cp manifests/db/values/movie-db/values-dev.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ movie-db-dev --values=values.yml --namespace dev
@@ -77,10 +77,10 @@ stage('Deploiement en dev'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/service/values/values-dev.yaml values.yml
+                cp manifests/service/values/cast-service/values-dev.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
-                helm upgrade --install manifests/service/ cast-service-dev --values=values.yml --namespace dev
+                helm upgrade --install manifests/movie-service/service/ cast-service-dev --values=values.yml --namespace dev
                 
                 cp manifests/service/values/values-dev.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
@@ -103,12 +103,12 @@ stage('Deploiement en staging'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/db/values/values-staging.yaml values.yml
+                cp manifests/db/values/cast-db/values-staging.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ cast-db-staging --values=values.yml --namespace staging
                 
-                cp manifests/db/values/values-staging.yaml values.yml
+                cp manifests/db/values/movie-db/values-staging.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ movie-db-staging --values=values.yml --namespace staging
@@ -120,12 +120,12 @@ stage('Deploiement en staging'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/service/values/values-staging.yaml values.yml
+                cp manifests/service/values/cast-service/values-staging.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ cast-service-staging --values=values.yml --namespace staging
                 
-                cp manifests/service/values/values-staging.yaml values.yml
+                cp manifests/service/values/movie-service/values-staging.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ movie-service-staging --values=values.yml --namespace staging
@@ -147,12 +147,12 @@ stage('Deploiement en QA'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/db/values/values-qa.yaml values.yml
+                cp manifests/db/values/cast-db/values-qa.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ cast-db-qa --values=values.yml --namespace qa
                 
-                cp manifests/db/values/values-qa.yaml values.yml
+                cp manifests/db/values/movie-db/values-qa.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ movie-db-qa --values=values.yml --namespace qa
@@ -164,12 +164,12 @@ stage('Deploiement en QA'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/service/values/values-qa.yaml values.yml
+                cp manifests/service/values/cast-service/values-qa.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ cast-service-qa --values=values.yml --namespace qa
                 
-                cp manifests/service/values/values-qa.yaml values.yml
+                cp manifests/service/values/movie-service/values-qa.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ movie-service-qa --values=values.yml --namespace qa
@@ -183,6 +183,9 @@ stage('Deploiement en QA'){
         KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
         }
             steps {
+                    timeout(time: 15, unit: "MINUTES") {
+                        input message: 'Voulez-vous déployer en production ?', ok: 'Oui'
+                    }
 
                 script {
                 sh '''
@@ -190,12 +193,12 @@ stage('Deploiement en QA'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/db/values/values-prod.yaml values.yml
+                cp manifests/db/values/cast-db/values-prod.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ cast-db-prod --values=values.yml --namespace prod
                 
-                cp manifests/db/values/values-prod.yaml values.yml
+                cp manifests/db/values/movie-db/values-prod.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/db/ movie-db-prod --values=values.yml --namespace prod
@@ -208,12 +211,12 @@ stage('Deploiement en QA'){
                 mkdir .kube
                 ls
                 cat $KUBECONFIG > .kube/config
-                cp manifests/service/values/values-prod.yaml values.yml
+                cp manifests/service/values/cast-service/values-prod.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ cast-service-prod --values=values.yml --namespace prod
                 
-                cp manifests/service/values/values-prod.yaml values.yml
+                cp manifests/service/values/movie-service/values-prod.yaml values.yml
                 sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 cat values.yml
                 helm upgrade --install manifests/service/ movie-service-prod --values=values.yml --namespace prod
