@@ -38,17 +38,19 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
+
 # Additional volumes on the output Deployment definition.
 volumes:
-  - name: db-volume
-    persistentVolumeClaim:
-      claimName: db-pvc
+  - name: movie-db-volume
+    hostPath:
+      path:  /postgres_data_movie
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: db-volume
+  - name: movie-db-volume
     mountPath: "/var/lib/postgresql/data"
 
 username: movie_db_username
 password: movie_db_password
 dbname: movie_db_prod
+castServiceUrl: http://cast_service:8000/api/v1/casts/

@@ -14,13 +14,13 @@ image:
   tag: "12.1-alpine"
 
 imagePullSecrets: []
-nameOverride: "movie-db"
-fullnameOverride: "movie-db"
+nameOverride: "cast-db"
+fullnameOverride: "cast-db"
 
-serviceName: movie_service
+serviceName: cast_service
 
 service:
-  name: movie_service
+  name: cast_service
   type: ClusterIP
   port: 5432
   targetPort: 5432
@@ -40,15 +40,15 @@ resources:
 
 # Additional volumes on the output Deployment definition.
 volumes:
-  - name: db-volume
-    persistentVolumeClaim:
-      claimName: db-pvc
+  - name: cast-db-volume
+    hostPath:
+      path:  /postgres_data_cast
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: db-volume
+  - name: cast-db-volume
     mountPath: "/var/lib/postgresql/data"
 
-username: movie_db_username
-password: movie_db_password
-dbname: movie_db_dev
+username: cast_db_username
+password: cast_db_password
+dbname: cast_db_dev

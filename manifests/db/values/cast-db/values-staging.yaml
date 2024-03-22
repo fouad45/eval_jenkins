@@ -40,13 +40,13 @@ resources:
 
 # Additional volumes on the output Deployment definition.
 volumes:
-  - name: db-volume
-    persistentVolumeClaim:
-      claimName: db-pvc
+  - name: cast-db-volume
+    hostPath:
+      path:  /postgres_data_cast
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
-  - name: db-volume
+  - name: cast-db-volume
     mountPath: "/var/lib/postgresql/data"
 
 username: cast_db_username
