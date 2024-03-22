@@ -47,4 +47,4 @@ resources:
 autoscaling:
   enabled: false
 
-databaseURI: postgresql://cast_db_username:cast_db_password@cast_db/cast_db_prod
+databaseURI: postgresql://cast_db_username:cast_db_password@cast-db/cast_db_prod
