@@ -4,8 +4,8 @@
 
 replicaCount: 1
 
-env: QA
-namespace: QA
+env: qa
+namespace: qa
 
 image:
   repository: postgres
@@ -51,4 +51,4 @@ volumeMounts:
 
 username: cast_db_username
 password: cast_db_password
-dbname: cast_db_QA
+dbname: cast_db_qa

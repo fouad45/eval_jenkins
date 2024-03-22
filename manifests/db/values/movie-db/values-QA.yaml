@@ -4,8 +4,8 @@
 
 replicaCount: 1
 
-env: QA
-namespace: QA
+env: qa
+namespace: qa
 
 image:
   repository: postgres
@@ -52,5 +52,5 @@ volumeMounts:
 
 username: movie_db_username
 password: movie_db_password
-dbname: movie_db_QA
+dbname: movie_db_qa
 castServiceUrl: http://cast-service:8000/api/v1/casts/

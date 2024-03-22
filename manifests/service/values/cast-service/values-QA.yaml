@@ -1,7 +1,7 @@
 replicaCount: 1
 
-env: QA
-namespace: QA
+env: qa
+namespace: qa
 
 image:
   repository: fouad45/cast-service
@@ -47,4 +47,4 @@ resources:
 autoscaling:
   enabled: false
 
-databaseURI: postgresql://cast_db_username:cast_db_password@cast_db/cast_db_QA
+databaseURI: postgresql://cast_db_username:cast_db_password@cast_db/cast_db_qa
