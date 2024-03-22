@@ -1,0 +1,48 @@
+replicaCount: 1
+
+env: QA
+namespace: QA
+
+image:
+  repository: fouad45/cast-service
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.0"
+
+imagePullSecrets: []
+nameOverride: "cast_service"
+fullnameOverride: "cast_service"
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: NodePort
+  port: 8002
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: "traefik"
+  hosts:
+    - host: helm.fouad-datascientest.cloudns.biz
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false

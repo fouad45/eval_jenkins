@@ -1,0 +1,54 @@
+# Default values for db.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+env: QA
+namespace: QA
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "12.1-alpine"
+
+imagePullSecrets: []
+nameOverride: "movie-db"
+fullnameOverride: "movie-db"
+
+serviceName: movie_service
+
+service:
+  name: movie_service
+  type: ClusterIP
+  port: 5432
+  targetPort: 5432
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# Additional volumes on the output Deployment definition.
+volumes:
+  - name: db-volume
+    persistentVolumeClaim:
+      claimName: db-pvc
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts:
+  - name: db-volume
+    mountPath: "/var/lib/postgresql/data"
+
+username: movie_db_username
+password: movie_db_password
+dbname: movie_db_QA
