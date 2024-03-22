@@ -28,7 +28,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-           env:          
+          env:          
             - name: "DATABASE_URI"
               value: {{ .Values.databaseURI }}
             {{- with .Values.castServiceUrl }}
