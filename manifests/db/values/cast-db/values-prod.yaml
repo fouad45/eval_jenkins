@@ -20,7 +20,7 @@ fullnameOverride: "cast-db"
 serviceName: cast-db
 
 service:
-  name: cast-db
+  name: cast_db_prod
   type: ClusterIP
   port: 5432
   targetPort: 5432

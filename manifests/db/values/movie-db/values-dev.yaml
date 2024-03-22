@@ -20,7 +20,7 @@ fullnameOverride: "movie-db"
 serviceName: movie-db
 
 service:
-  name: movie-service
+  name: movie_db_dev
   type: ClusterIP
   port: 5432
   targetPort: 5432
