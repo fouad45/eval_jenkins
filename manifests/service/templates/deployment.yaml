@@ -32,7 +32,7 @@ spec:
             - name: "DATABASE_URI"
               value: {{ .Values.databaseURI }}
             {{- with .Values.castServiceUrl }}
-            - name: "CAST_SERVICE_HOST_URL"
+            - name: "cast-service_HOST_URL"
               value: {{ .Values.castServiceUrl }}
             {{- end }}
           ports:

@@ -17,10 +17,10 @@ imagePullSecrets: []
 nameOverride: "movie-db"
 fullnameOverride: "movie-db"
 
-serviceName: movie_service
+serviceName: movie-service
 
 service:
-  name: movie_service
+  name: movie-service
   type: ClusterIP
   port: 5432
   targetPort: 5432
@@ -53,4 +53,4 @@ volumeMounts:
 username: movie_db_username
 password: movie_db_password
 dbname: movie_db_prod
-castServiceUrl: http://cast_service:8000/api/v1/casts/
+castServiceUrl: http://cast-service:8000/api/v1/casts/

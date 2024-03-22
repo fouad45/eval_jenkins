@@ -14,8 +14,8 @@ image:
   tag: "1.0"
 
 imagePullSecrets: []
-nameOverride: "cast_service"
-fullnameOverride: "cast_service"
+nameOverride: "cast-service"
+fullnameOverride: "cast-service"
 
 service:
   type: NodePort

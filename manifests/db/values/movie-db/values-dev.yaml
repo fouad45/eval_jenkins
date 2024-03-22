@@ -17,10 +17,10 @@ imagePullSecrets: []
 nameOverride: "movie-db"
 fullnameOverride: "movie-db"
 
-serviceName: movie_service
+serviceName: movie-service
 
 service:
-  name: movie_service
+  name: movie-service
   type: ClusterIP
   port: 5432
   targetPort: 5432

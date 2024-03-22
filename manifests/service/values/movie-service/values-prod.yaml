@@ -10,8 +10,8 @@ image:
   tag: "1.0"
 
 imagePullSecrets: []
-nameOverride: "movie_service"
-fullnameOverride: "movie_service"
+nameOverride: "movie-service"
+fullnameOverride: "movie-service"
 
 podAnnotations: {}
 podLabels: {}
@@ -48,4 +48,4 @@ autoscaling:
   enabled: false
 
 databaseURI: postgresql://movie_db_username:movie_db_password@movie_db/movie_db_prod
-castServiceUrl: http://cast_service:8000/api/v1/casts/
+castServiceUrl: http://cast-service:8000/api/v1/casts/

@@ -17,10 +17,10 @@ imagePullSecrets: []
 nameOverride: "cast-db"
 fullnameOverride: "cast-db"
 
-serviceName: cast_service
+serviceName: cast-service
 
 service:
-  name: cast_service
+  name: cast-service
   type: ClusterIP
   port: 5432
   targetPort: 5432
