@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: {{ .Values.service.name }}
   labels: {{- include "db.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:
