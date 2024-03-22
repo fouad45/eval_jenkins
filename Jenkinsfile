@@ -92,7 +92,6 @@ stage('Deploiement en dev'){
 
         }
 stage('Deploiement en staging'){
-        stage('Deploiement en staging'){
         environment
         {
         KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
@@ -136,7 +135,6 @@ stage('Deploiement en staging'){
 
         }
 
-        }
 stage('Deploiement en QA'){
         environment
         {
@@ -180,13 +178,12 @@ stage('Deploiement en QA'){
             }
         }
   stage('Deploiement en prod'){
-        stage('Deploiement en prod'){
         environment
         {
         KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
         }
             steps {
-                
+
                 script {
                 sh '''
                 rm -Rf .kube
@@ -226,7 +223,6 @@ stage('Deploiement en QA'){
 
         }
 
-        }
 
 }
 }
