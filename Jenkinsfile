@@ -58,7 +58,6 @@ stage('Deploiement en dev'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/db/values/cast-db/values-dev.yaml values.yml
                 cat values.yml
@@ -73,7 +72,6 @@ stage('Deploiement en dev'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/service/values/cast-service/values-dev.yaml values.yml
                 sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
@@ -99,7 +97,6 @@ stage('Deploiement en staging'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/db/values/cast-db/values-staging.yaml values.yml
                 cat values.yml
@@ -114,7 +111,6 @@ stage('Deploiement en staging'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/service/values/cast-service/values-staging.yaml values.yml
                 sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
@@ -141,7 +137,6 @@ stage('Deploiement en QA'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/db/values/cast-db/values-qa.yaml values.yml
                 cat values.yml
@@ -156,7 +151,6 @@ stage('Deploiement en QA'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/service/values/cast-service/values-qa.yaml values.yml
                 sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
@@ -185,7 +179,6 @@ stage('Deploiement en QA'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/db/values/cast-db/values-prod.yaml values.yml
                 cat values.yml
@@ -201,7 +194,6 @@ stage('Deploiement en QA'){
                 sh '''
                 rm -Rf .kube
                 mkdir .kube
-                ls
                 cat $KUBECONFIG > .kube/config
                 cp manifests/service/values/cast-service/values-prod.yaml values.yml
                 sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
