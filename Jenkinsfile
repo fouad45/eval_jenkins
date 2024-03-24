@@ -148,7 +148,7 @@ stage('Deploiement en QA'){
         }
   stage('Deploiement en prod'){
         when {
-            expression { env.GIT_BRANCH != 'origin/master'}
+            expression { env.GIT_BRANCH == 'origin/master'}
         }
             steps {
                     timeout(time: 15, unit: "MINUTES") {
