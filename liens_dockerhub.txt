@@ -1,0 +1,4 @@
+Liens vers les images docker sur DockerHub
+
+https://hub.docker.com/repository/docker/fouad45/movie-service/general
+https://hub.docker.com/repository/docker/fouad45/cast-service/general
