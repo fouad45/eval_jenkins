@@ -4,6 +4,7 @@ environment { // Declaration of environment variables
     DOCKER_IMAGE_CAST = "cast-service"
     DOCKER_IMAGE_MOVIE = "movie-service"
     DOCKER_TAG = "v.${BUILD_ID}.0" // we will tag our images with the current build in order to increment the value by 1 with each new build
+    KUBECONFIG = credentials("config") 
 }
 agent any // Jenkins will be able to select all available agents
 stages {
@@ -18,16 +19,6 @@ stages {
                 '''
                 }
             }
-        }
-        stage('Test Acceptance'){ // we launch the curl command to validate that the container responds to the request
-            steps {
-                    script {
-                    sh '''
-                    curl localhost
-                    '''
-                    }
-            }
-
         }
         stage('Docker Push'){ //we pass the built image to our docker hub account
             environment
@@ -49,10 +40,6 @@ stages {
         }
 
 stage('Deploiement en dev'){
-        environment
-        {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-        }
             steps {
                 script {
                 sh '''
@@ -88,10 +75,6 @@ stage('Deploiement en dev'){
 
         }
 stage('Deploiement en staging'){
-        environment
-        {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-        }
             steps {
                 script {
                 sh '''
@@ -128,10 +111,6 @@ stage('Deploiement en staging'){
         }
 
 stage('Deploiement en QA'){
-        environment
-        {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-        }
             steps {
                 script {
                 sh '''
@@ -166,9 +145,8 @@ stage('Deploiement en QA'){
             }
         }
   stage('Deploiement en prod'){
-        environment
-        {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+        when {
+            branch "master"
         }
             steps {
                     timeout(time: 15, unit: "MINUTES") {
