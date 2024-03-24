@@ -5,11 +5,13 @@ environment { // Declaration of environment variables
     DOCKER_IMAGE_MOVIE = "movie-service"
     DOCKER_TAG = "v.${BUILD_ID}.0" // we will tag our images with the current build in order to increment the value by 1 with each new build
     KUBECONFIG = credentials("config") 
+    
 }
 agent any // Jenkins will be able to select all available agents
 stages {
         stage(' Docker Build'){ // docker build image stage
             steps {
+               
                 script {
                 sh '''
                  docker rm -f jenkins
@@ -146,7 +148,7 @@ stage('Deploiement en QA'){
         }
   stage('Deploiement en prod'){
         when {
-            branch "master"
+            expression { env.GIT_BRANCH != 'origin/master'}
         }
             steps {
                     timeout(time: 15, unit: "MINUTES") {
